@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: authentication_development
+  url: <%= ENV["DATABASE_URL"] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: authentication_production
-  username: authentication
-  password: <%= ENV["AUTHENTICATION_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
