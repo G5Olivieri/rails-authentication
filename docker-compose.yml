@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    command: bin/rails server -b 0.0.0.0
+    depends_on:
+      - postgres
+    working_dir: /app
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+
+  postgres:
+    image: postgres:alpine
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+
+volumes:
+  postgres:
+  bundle:
