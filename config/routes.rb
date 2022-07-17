@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
 
+  namespace :api do
+    post 'token', to: 'token#create', as: :token_create
+  end
+
   # Defines the root path route ("/")
   root "users#index"
 end

@@ -1,6 +1,10 @@
 <h1>Log In</h1>
 
 <%= form_tag sessions_path do %>
+  <%= hidden_field_tag :redirect_uri, @redirect_uri %>
+  <%= hidden_field_tag :client_id, @client_id %>
+  <%= hidden_field_tag :response_type, @response_type %>
+
   <div class="field">
     <%= label_tag :email %><br />
     <%= text_field_tag :email, params[:email] %>
