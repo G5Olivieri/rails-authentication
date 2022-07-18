@@ -9,7 +9,7 @@ class Api::TokenController < ActionController::API
             payload = JsonWebToken.decode(params[:code])
             user = User.find(payload[:sub])
             if user
-              jwt = JsonWebToken.external_encode({ sub: user.id, email: user.email })
+              jwt = JsonWebToken.external_encode({ sub: user.id, email: user.email, aud: @client_id })
               return render json: { access_token: jwt }
             else
                 return render json: {}, status: :unauthorized
